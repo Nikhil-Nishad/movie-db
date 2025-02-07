@@ -1,23 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './Card.css'
+import React from "react";
+import { useNavigate } from "react-router-dom"; 
+import "./Card.css";
 
-const Card = ({movie}) => {
+   
+const Card = ({ movie }) => {
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    // Function to handle card click
+    const handleCardClick = () => {
+        navigate(`/movie/${movie.id}`); // Navigate to the movie detail page
+    };
   return (
-    <Link to={`/movie/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
-            <div className="cards">
-                <img className="cards__img" src={`https://image.tmdb.org/t/p/original${movie?movie.poster_path:""}`} />
-                <div className="cards__overlay">
-                    <div className="card__title">{movie?movie.original_title:""}</div>
-                    <div className="card__runtime">
-                        {movie?movie.release_date:""}
-                        <span className="card__rating">{movie?movie.vote_average:""}<i className="fas fa-star" /></span>
-                    </div>
-                    <div className="card__description">{movie ? movie.overview.slice(0,118)+"..." : ""}</div>
-                </div>
-            </div>
-        </Link>
-  )
-}
+    <div className="card" onClick={handleCardClick}>
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        alt={movie.title}
+        className="card-image"
+      />
+      <div className="card-content">
+        <h3 className="card-title">{movie.title}</h3>
+        <p className="card-date">{movie.release_date}</p>
+        <p className="card-rating">
+          <span className="star-icon">⭐</span> {movie.vote_average.toFixed(1)}
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default Card
+export default React.memo(Card);

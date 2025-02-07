@@ -1,4 +1,4 @@
-.movie-list {
+/* .movie-list {
     padding: 0 3rem 3rem 3rem;
 }
 
@@ -11,4 +11,47 @@ margin:  2.5rem;
     display: flex;
     flex-wrap: wrap ;
     justify-content: center;
+} */
+.movie-list {
+    padding: 20px;
+}
+
+.list-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.list-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.load-more {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.load-more button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.load-more button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin: 20px 0;
 }
